@@ -59,7 +59,3 @@
 
 ## Pembagian kelompok
 bagi kelompok menjadi 4 kelompok
-
-## Pak IOT
-mendapat 1 pack IOT untuk ber dua
-
