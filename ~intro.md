@@ -3,10 +3,10 @@
 ## Pembelajaran SMT 4
 - **[TP 1 Memahami perancangan web]()** <br>
     - **[Pertemuan 1]()**  
-        - **[Dokumentasi perancangan web & figma setup](/TP1%20Memahami%20perancangan%20web/Pertemuan%201/1.%20Dokumentasi%20perancangan%20web%20&%20figma%20setup.md)** 
+        - **[Dokumentasi perancangan web & figma setup]()** 
         - **[Tugas]()** Menentukan web yang akan di deconstruct
     - **[Pertemuan 2]()**  
-        - **[Reconstruct Web lain]()**
+        - **[Deconstruct Web lain]()**
         - **[Tugas]()** deconstruct web yang sudah ada
     - **[Pertemuan 3]()**  
         - **[Merancang Web sendiri]()**
