@@ -50,16 +50,6 @@
 
 ---
 
-## 6. Kebutuhan Non-Fungsional 🔧
-- **Performa:** TTFB < 500ms untuk halaman utama, <2s waktu muat awal.
-- **Skalabilitas:** mendukung 1000 concurrent users (baseline).
-- **Keamanan:** TLS, OWASP Top 10 mitigations, enkripsi data sensitif.
-- **Ketersediaan:** SLA target 99.9%.
-- **Aksesibilitas:** WCAG AA minimum.
-- **Lokalisasi:** dukungan multi-bahasa (opsional).
-
----
-
 ## 7. Arsitektur Sistem & Teknologi 🏗️
 - **Arsitektur:** Client (browser) ↔ API (REST/GraphQL) ↔ DB
 - **Rekomendasi stack (opsional):**

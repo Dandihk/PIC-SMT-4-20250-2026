@@ -4,10 +4,10 @@
 - **[TP 1 Memahami perancangan web]()** <br>
     - **[Pertemuan 1]()**  
         - **[Dokumentasi perancangan web & figma setup](/TP1%20Memahami%20perancangan%20web/Pertemuan%201/1.%20Dokumentasi%20perancangan%20web%20&%20figma%20setup.md)** 
-        - **[Tugas]()** Reconstruct web yang sudah ada
+        - **[Tugas]()** Menentukan web yang akan di deconstruct
     - **[Pertemuan 2]()**  
         - **[Reconstruct Web lain]()**
-        - **[Tugas]()** reconstruct web yang sudah ada
+        - **[Tugas]()** deconstruct web yang sudah ada
     - **[Pertemuan 3]()**  
         - **[Merancang Web sendiri]()**
         - **[Tugas]()** Perancangan web Sendiri kelompok
@@ -16,46 +16,48 @@
         - **[Tugas]()** Review Perancangan web
 - **[TP 2 Memahami Perancangan End point API]()** 
     - **[Pertemuan 1]()** 
-        - **[Memahami Konsep API & Laravel & postman]()**
+        - **[Memahami Backend | Konsep API & Laravel MVC & postman]()**
         - **[Tugas]()** download postman & laravel
-    - **[Pertemuan 2]()**  
+    - **[Pertemuan 2]()** 
+        - **[Basic Laravel]()**
+        - **[Tugas]()** download postman & laravel
+    - **[Pertemuan 3]()**  
         - **[Membuat API Read & Create & search]()**  
         - **[Tugas]()**  
-    - **[Pertemuan 3]()**  
+    - **[Pertemuan 4]()**  
         - **[Membuat API Update & Delete]()**  
         - **[Tugas]()**  
-    - **[Pertemuan 4]()**  
+    - **[Pertemuan 5]()**  
         - **[Membuat API Auth Login]()**  
         - **[Tugas]()**  
-    - **[Pertemuan 5]()**  
+    - **[Pertemuan 6]()**  
         - **[Perancangan API Web sendiri]()**  
         - **[Tugas]()**  
-    - **[Pertemuan 6]()**  
+    - **[Pertemuan 7]()**  
         - **[Perancangan API Web sendiri]()**  
         - **[Tugas]()**  
 - **[TP 3 Memahami dan menerapkan Pemprograman Web  Framework Frontend]()** 
     - **[Pertemuan 1]()**  
-        - **[Intro Perancangan Web]()**  
-        - **[Tugas]()**  
+        - **[Memahami Frontend | Vue.Js | Routing]()**  
+        - **[Tugas]()** 
     - **[Pertemuan 2]()**  
-        - **[Intro Perancangan Web]()**  
-        - **[Tugas]()**  
+        - **[Basic Vue.Js Data Binding ]()**  
+        - **[Tugas]()** Consume API 
     - **[Pertemuan 3]()**  
-        - **[Intro Perancangan Web]()**  
-        - **[Tugas]()**  
+        - **[Basic Vue.Js Routing]()**  
+        - **[Tugas]()**  membuat frontend sederhana
     - **[Pertemuan 4]()**  
-        - **[Intro Perancangan Web]()**  
+        - **[Basic Vue.Js Intergrasi API Laravel]()**  
         - **[Tugas]()**  
     - **[Pertemuan 5]()**  
-        - **[Intro Perancangan Web]()**  
+        - **[Perancangan Frontend Web sendiri]()**  
         - **[Tugas]()**  
     - **[Pertemuan 6]()**  
-        - **[Intro Perancangan Web]()**  
+        - **[Perancangan Frontend Web sendiri]()**  
         - **[Tugas]()**  
     - **[Pertemuan 7]()**  
-        - **[Intro Perancangan Web]()**  
+        - **[Presentasi Web di Adik kelas]()**  
         - **[Tugas]()**  
-
 
 ## Pembagian kelompok
 bagi kelompok menjadi 4 kelompok
