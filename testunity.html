@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>UCAA-820 Exam Simulator</title>
+<style>
+body{margin:0;font-family:Segoe UI;background:#e5e5e5;}
+.header{background:#003b6f;color:white;padding:10px 20px;display:flex;justify-content:space-between;}
+.container{display:flex;height:90vh;}
+.sidebar{width:220px;background:#f0f0f0;padding:10px;overflow:auto;}
+.sidebar button{width:40px;height:40px;margin:4px;}
+.main{flex:1;background:white;padding:20px;}
+.timer{font-size:18px;font-weight:bold;}
+.option{margin:8px 0;}
+.navbtns{margin-top:20px;}
+.navbtns button{padding:10px 20px;font-size:14px;margin-right:10px;}
+</style>
+</head>
+<body>
+
+<div class="header">
+<div>Unity Certified Associate - Artist (UCAA-820)</div>
+<div class="timer" id="timer">60:00</div>
+</div>
+
+<div class="container">
+<div class="sidebar" id="sidebar"></div>
+
+<div class="main">
+<h3 id="qtitle"></h3>
+<div id="options"></div>
+
+<div class="navbtns">
+<button onclick="prev()">Previous</button>
+<button onclick="next()">Next</button>
+<button onclick="finish()">Finish Exam</button>
+</div>
+</div>
+</div>
+
+<script>
+const questions=[
+["Texture function is to…","Add color and surface detail","Control animation","Control physics","Control audio","A"],
+["Best format for transparency?","JPG","PNG","BMP","GIF","B"],
+["Material connects…","Script","Texture & Shader","Audio","Camera","B"],
+["Shader controls…","Animation","Visual rendering","Physics","Input","B"],
+["Albedo means…","Base color","Reflection","Transparency","Shadow","A"]
+];
+
+let answers=new Array(questions.length);
+let index=0;
+
+// sidebar
+const sidebar=document.getElementById("sidebar");
+for(let i=0;i<questions.length;i++){
+ sidebar.innerHTML+=`<button onclick="go(${i})">${i+1}</button>`;
+}
+
+function load(){
+ document.getElementById("qtitle").innerText=
+ (index+1)+". "+questions[index][0];
+ let html="";
+ ["A","B","C","D"].forEach((l,i)=>{
+   let checked=answers[index]==l?"checked":"";
+   html+=`<div class='option'>
+   <input type='radio' name='opt' ${checked}
+   onclick="answers[${index}]='${l}'">
+   ${l}. ${questions[index][i+1]}
+   </div>`;
+ });
+ document.getElementById("options").innerHTML=html;
+}
+
+function next(){ if(index<questions.length-1){index++;load();}}
+function prev(){ if(index>0){index--;load();}}
+function go(i){ index=i; load();}
+
+function finish(){
+ let score=0;
+ for(let i=0;i<questions.length;i++){
+   if(answers[i]==questions[i][5]) score++;
+ }
+ alert("Exam Finished!\nScore: "+score+"/"+questions.length);
+}
+
+let time=60*60;
+setInterval(()=>{
+ let m=Math.floor(time/60);
+ let s=time%60;
+ document.getElementById("timer").innerText=
+ m+":"+(s<10?"0":"")+s;
+ if(time<=0) finish();
+ time--;
+},1000);
+
+load();
+</script>
+
+</body>
+</html>
