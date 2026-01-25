@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unity Certified Associate Artist - Full 40Q Simulation</title>
+    <style>
+        :root { --p-blue: #007398; --p-bg: #f4f4f4; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--p-bg); display: flex; flex-direction: column; height: 100vh; }
+        header { background: white; padding: 15px 30px; border-bottom: 4px solid var(--p-blue); display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        #timer { background: #d9534f; color: white; padding: 8px 15px; border-radius: 4px; font-weight: bold; }
+        main { flex: 1; display: flex; justify-content: center; padding: 20px; overflow-y: auto; }
+        .card { background: white; width: 100%; max-width: 900px; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); align-self: start; margin-top: 20px; }
+        .q-meta { color: #888; font-size: 0.9rem; margin-bottom: 5px; }
+        .q-text { font-size: 1.3rem; font-weight: 500; margin-bottom: 25px; line-height: 1.4; }
+        .opt { padding: 15px; border: 2px solid #ddd; border-radius: 6px; cursor: pointer; margin-bottom: 12px; transition: 0.2s; }
+        .opt:hover { border-color: var(--p-blue); background: #f0f8ff; }
+        .opt.selected { background: var(--p-blue); color: white; border-color: var(--p-blue); }
+        footer { background: #333; padding: 15px 30px; display: flex; justify-content: space-between; }
+        button { padding: 10px 25px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; text-transform: uppercase; }
+        .btn-nav { background: #666; color: white; }
+        .btn-action { background: var(--p-blue); color: white; }
+        #results { display: none; text-align: center; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div style="font-weight:bold; color:var(--p-blue)">UCAA-820: Full Length Practice Exam</div>
+    <div id="timer">90:00</div>
+</header>
+
+<main>
+    <div class="card">
+        <div id="quiz-content">
+            <div class="q-meta" id="q-num">Question 1 of 40</div>
+            <div class="q-text" id="q-text">Loading...</div>
+            <div id="options"></div>
+        </div>
+        <div id="results">
+            <h2>Evaluation Complete</h2>
+            <div id="score" style="font-size: 3rem; font-weight: bold; color: var(--p-blue);"></div>
+            <p id="msg"></p>
+            <button class="btn-action" onclick="location.reload()">Restart</button>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <button class="btn-nav" id="prev" onclick="move(-1)">Previous</button>
+    <button class="btn-action" id="next" onclick="move(1)">Next</button>
+    <button class="btn-action" id="finish" style="display:none; background:#28a745" onclick="end()">Submit</button>
+</footer>
+
+<script>
+const questions = [
+    { q: "Which property determines the order in which 2D Sprites are rendered on the same Sorting Layer?", options: ["Z-Position", "Order in Layer", "Alpha value", "Texture size"], correct: 1 },
+    { q: "What is the primary purpose of a 'Reflection Probe' in Unity?", options: ["To bounce light off walls", "To capture and display surrounding reflections on reflective materials", "To increase the brightness of a scene", "To record video of the game"], correct: 1 },
+    { q: "In the Animator, what is a 'Transition Duration'?", options: ["The length of the animation clip", "The time it takes to blend from one state to another", "The delay before an animation starts", "The speed of the animation"], correct: 1 },
+    { q: "Which component is required to make a GameObject affected by Unity's physics engine (Gravity, Forces)?", options: ["Box Collider", "Mesh Filter", "Rigidbody", "Mesh Renderer"], correct: 2 },
+    { q: "When importing a 3D model, what does 'Extract Materials' allow you to do?", options: ["Delete the textures", "Make the materials editable as separate assets in the Project window", "Change the model's polygon count", "Export the model to Blender"], correct: 1 },
+    { q: "What is 'G-Buffer' an acronym for in Deferred Rendering?", options: ["Graphics Buffer", "Geometry Buffer", "Global Buffer", "Grid Buffer"], correct: 1 },
+    { q: "Which window allows you to view the 'Draw Calls' and 'Batched' statistics while the game is running?", options: ["Console", "Project", "Stats (Game View)", "Hierarchy"], correct: 2 },
+    { q: "What is the purpose of 'Mip Maps'?", options: ["To add detail to textures", "To reduce aliasing and memory bandwidth by using lower-res textures at a distance", "To create 3D effects on 2D planes", "To compress audio"], correct: 1 },
+    { q: "In a PBR (Physically Based Rendering) material, which map defines how 'shiny' or 'blurred' a reflection is?", options: ["Metallic", "Normal", "Smoothness / Roughness", "Albedo"], correct: 2 },
+    { q: "What is the 'Skybox' in Unity?", options: ["A box that contains the player", "A 6-sided material that represents the distant background/horizon", "A type of light", "A physics trigger"], correct: 1 },
+    { q: "What does 'LOD' stand for?", options: ["Light on Demand", "Level of Detail", "Linear Object Data", "Length of Distance"], correct: 1 },
+    { q: "Which tool is used to paint trees and grass directly onto a Unity Terrain?", options: ["Paint Texture", "Set Height", "Paint Details", "Raise or Lower Terrain"], correct: 2 },
+    { q: "What is the 'Hierarchy' window used for?", options: ["Storing all assets", "Visualizing the parent-child relationship of GameObjects in the current scene", "Writing code", "Applying shaders"], correct: 1 },
+    { q: "What is 'Baking' in the context of NavMesh?", options: ["Calculating lightmaps", "The process of generating the walkable area for AI", "Exporting the game", "Applying textures"], correct: 1 },
+    { q: "Which Post-Processing effect simulates the lens being unable to focus on all distances at once?", options: ["Bloom", "Vignette", "Depth of Field", "Lens Flare"], correct: 2 },
+    { q: "In a Rigged Character, what is 'Weight Painting'?", options: ["Choosing the color of the skin", "Defining how much a bone affects a specific part of the mesh", "Setting the gravity of the character", "Painting textures"], correct: 1 },
+    { q: "Which window is used to manage the connections between animation states?", options: ["Animation Window", "Animator Window", "Project Window", "Inspector"], correct: 1 },
+    { q: "What is 'Batching'?", options: ["Deleting unused objects", "Combining multiple draw calls into one to improve performance", "Moving objects in a group", "Importing many files at once"], correct: 1 },
+    { q: "Which light type emits light in all directions from a single point, like a light bulb?", options: ["Directional Light", "Spot Light", "Point Light", "Area Light"], correct: 2 },
+    { q: "What is a 'Prefab'?", options: ["A finished game", "A reusable GameObject template stored as an asset", "A type of script", "A texture format"], correct: 1 },
+    { q: "What is 'Normal Mapping' used for?", options: ["To change the color of a mesh", "To add fake surface detail (bumps/dents) without increasing polygon count", "To fix the orientation of an object", "To smooth out edges"], correct: 1 },
+    { q: "Which property on a camera defines the viewing angle (Zoom level)?", options: ["Clipping Planes", "Field of View (FOV)", "Culling Mask", "Clear Flags"], correct: 1 },
+    { q: "What is 'Lightmapping'?", options: ["Creating lights via script", "The process of pre-calculating and storing light data in textures", "Moving lights at runtime", "A way to measure brightness"], correct: 1 },
+    { q: "What is the 'Console' window used for?", options: ["Viewing 3D models", "Debugging errors and log messages", "Editing animations", "Buying assets"], correct: 1 },
+    { q: "In Unity UI, what is an 'Anchor'?", options: ["A heavy object", "A point that defines how a UI element stays positioned relative to screen resizing", "A link to a website", "The center of a 3D object"], correct: 1 },
+    { q: "Which audio component is required on the Camera to hear sounds?", options: ["Audio Source", "Audio Listener", "Audio Clip", "Mixer"], correct: 1 },
+    { q: "What is 'Tiling' in a Material?", options: ["The number of times a texture repeats across a surface", "The size of the object", "The color of the tiles", "The speed of the texture"], correct: 0 },
+    { q: "What is 'Alpha Clipping'?", options: ["Deleting pixels based on transparency threshold", "Cutting the edge of a mesh", "A type of video compression", "Speeding up the GPU"], correct: 0 },
+    { q: "Which window is used to create and edit Keyframes for a specific property?", options: ["Animator", "Animation", "Scene", "Inspector"], correct: 1 },
+    { q: "What is a 'Trigger' collider?", options: ["A collider that stops physics objects", "A collider that allows objects to pass through but sends an event signal", "A gun component", "A type of light"], correct: 1 },
+    { q: "What is 'Global Illumination' (GI)?", options: ["Lighting the whole world", "A system that models how light bounces off surfaces onto other surfaces", "The sun", "A post-processing effect"], correct: 1 },
+    { q: "Which tool allows you to see the Wireframe of your meshes in the Scene View?", options: ["Shading Mode", "Layers", "Grid", "Gizmos"], correct: 0 },
+    { q: "What is 'Vertex Count'?", options: ["The number of colors in a mesh", "The number of points in a 3D model's geometry", "The speed of a mesh", "The size of a mesh"], correct: 1 },
+    { q: "What is 'Ambient Occlusion'?", options: ["A way to hide objects", "A shading method that adds shadows to cracks and crevices where light is blocked", "A type of light bulb", "Transparent shadows"], correct: 1 },
+    { q: "Which tab in the Inspector shows the components of a selected GameObject?", options: ["Project", "Console", "Inspector", "Hierarchy"], correct: 2 },
+    { q: "What is 'Screen Space Reflections'?", options: ["Mirroring the whole screen", "A technique to calculate reflections based on what is currently visible on screen", "A post-process that makes things bright", "A UI effect"], correct: 1 },
+    { q: "What does 'Z-Fighting' refer to?", options: ["Two objects fighting in the story", "Flickering that occurs when two surfaces are at the same depth", "The speed of an object", "A camera error"], correct: 1 },
+    { q: "What is 'Culling Mask' on a Light used for?", options: ["Changing the light color", "Determining which layers are affected by that light", "Hiding the light source", "Changing shadow resolution"], correct: 1 },
+    { q: "Which file format is most common for 3D models in Unity?", options: [".png", ".fbx", ".mp3", ".txt"], correct: 1 },
+    { q: "What is 'Kinematic' in Rigidbody settings?", options: ["The object is moved by physics only", "The object is moved by script/animation and doesn't react to forces", "The object is invisible", "The object is very fast"], correct: 1 }
+];
+
+let currentIdx = 0;
+let answers = new Array(questions.length).fill(null);
+let timeLeft = 90 * 60;
+
+function updateTimer() {
+    let m = Math.floor(timeLeft / 60);
+    let s = timeLeft % 60;
+    document.getElementById('timer').textContent = `${m}:${s < 10 ? '0'+s : s}`;
+    if(timeLeft > 0) timeLeft--; else end();
+}
+
+function render() {
+    const q = questions[currentIdx];
+    document.getElementById('q-num').textContent = `Question ${currentIdx + 1} of ${questions.length}`;
+    document.getElementById('q-text').textContent = q.q;
+    const optDiv = document.getElementById('options');
+    optDiv.innerHTML = '';
+    q.options.forEach((o, i) => {
+        const d = document.createElement('div');
+        d.className = `opt ${answers[currentIdx] === i ? 'selected' : ''}`;
+        d.textContent = o;
+        d.onclick = () => { answers[currentIdx] = i; render(); };
+        optDiv.appendChild(d);
+    });
+    document.getElementById('prev').disabled = currentIdx === 0;
+    const isLast = currentIdx === questions.length - 1;
+    document.getElementById('next').style.display = isLast ? 'none' : 'block';
+    document.getElementById('finish').style.display = isLast ? 'block' : 'none';
+}
+
+function move(s) { currentIdx += s; render(); }
+
+function end() {
+    let s = 0;
+    answers.forEach((a, i) => { if(a === questions[i].correct) s++; });
+    document.getElementById('quiz-content').style.display = 'none';
+    document.getElementById('results').style.display = 'block';
+    document.getElementById('score').textContent = `${s} / ${questions.length}`;
+    document.getElementById('msg').textContent = s > 28 ? "PASSED - Excellent knowledge!" : "FAILED - Keep studying the technical art docs.";
+    clearInterval(tInt);
+}
+
+const tInt = setInterval(updateTimer, 1000);
+render();
+</script>
+</body>
+</html>
