@@ -20,7 +20,7 @@
         - **[Tugas]()** download postman & laravel
     - **[Pertemuan 2]()** 
         - **[Basic Laravel]()**
-        - **[Tugas]()** download postman & laravel
+        - **[Tugas]()** 
     - **[Pertemuan 3]()**  
         - **[Membuat API Read & Create & search]()**  
         - **[Tugas]()**  
