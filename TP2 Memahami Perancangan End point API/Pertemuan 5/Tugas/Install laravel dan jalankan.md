@@ -3,11 +3,11 @@ Tugas 1
 Pahami materi pertemuan 5 **1. What is Laravel**
 
 buat laporan 
-- install laragon 6
+- install laragon 6 / pake versi 8 
 - update versi PHP 8.5
 - uipdate versi PHPMyadmion 5.2
 - ganti port apace/nginx ke 81
-- install composer
+- install composer (Path php pada composser arahkan ke php.exe yang ada di laragon/bin/php/php8.5 mu/php.exe) 
 - install git 
 - install node.js
 - buat project laravel (absen_nama)
